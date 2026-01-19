@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Alinhamento de Lyra • 18/01</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600&family=Pacifico&family=Caveat:wght@700&family=Shadows+Into+Light&family=Bebas+Neue&family=Lobster&family=Satisfy&family=Cinzel:wght@700&family=Great+Vibes&family=Amatic+SC:wght@700&family=Comfortaa:wght@700&family=Henny+Penny&family=UnifrakturMaguntia&family=Special+Elite&family=Almendra:wght@700&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Sacred Stone, Rose Nebula, Alchemy Gold -->
+    <!-- Application Structure Plan: 
+         1. Hero: Portal celestial com o nome Lyra pulsante e mutável.
+         2. Sacred Tarot: As cartas "A Estrela" e "A Imperatriz" integradas com molduras luxuosas.
+         3. Cosmic Lyra: Seção Vega redesenhada para ser elegante e legível.
+         4. Earth Mother: Homenagem à natureza e ao nascimento em 2006.
+         5. Altar: Dedicatória de Leonardo.
+    -->
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'stone-deep': '#1c1917', 
+                        'rose-magic': '#fb7185',  
+                        'gold-alchemy': '#d4af37',  
+                        'off-white': '#fafaf9', 
+                    },
+                    fontFamily: {
+                        cinzel: ['"Cinzel"', 'serif'],
+                        cursive: ['"Dancing Script"', 'cursive'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #1c1917;
+            color: #fafaf9;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Estrelas Dinâmicas */
+        #stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.4); }
+        }
+
+        /* Efeito de Fontes no Nome Lyra */
+        .lyra-font-span {
+            display: inline-block;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 0.6em;
+            text-shadow: 0 0 15px rgba(251, 113, 133, 0.5);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Tarot Display */
+        .tarot-frame {
+            position: relative;
+            width: 280px;
+            height: 480px;
+            border: 2px solid #d4af37;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #292524;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .tarot-frame:hover {
+            transform: scale(1.04) rotate(1deg);
+            border-color: #fb7185;
+            box-shadow: 0 0 30px rgba(251, 113, 133, 0.3);
+        }
+
+        .tarot-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tarot-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(28, 25, 23, 0.95));
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .glow-nebula {
+            position: absolute;
+            filter: blur(120px);
+            z-index: -1;
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+
+        .badge-cosmic {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Fundo de Estrelas -->
+    <div id="stars-container"></div>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
+        <div class="glow-nebula bg-rose-magic w-96 h-96 -top-20 -left-20"></div>
+        <div class="glow-nebula bg-gold-alchemy w-[500px] h-[500px] -bottom-40 -right-20"></div>
+
+        <div class="z-10 fade-in visible">
+            <span class="font-cinzel tracking-[0.6em] text-gold-alchemy text-xs md:text-sm uppercase mb-6 block">Consagração Arcana</span>
+            
+            <h1 class="text-7xl md:text-9xl mb-8">
+                <span class="lyra-dynamic-name text-white" data-name="Lyra">Lyra</span>
+            </h1>
+
+            <p class="font-cursive text-4xl md:text-6xl text-rose-magic drop-shadow-[0_0_15px_rgba(251,113,133,0.4)]">
+                A Alma que Toca o Céu e a Terra
+            </p>
+            
+            <div class="mt-16 flex flex-col items-center">
+                <div class="w-[1px] h-20 bg-gradient-to-b from-gold-alchemy to-transparent"></div>
+                <p class="mt-6 font-cinzel text-gold-alchemy tracking-[0.3em] text-sm">18 • 01 • 2006</p>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 animate-bounce text-gold-alchemy/50 flex flex-col items-center">
+            <span class="text-[10px] uppercase tracking-widest mb-2">Descer ao Sagrado</span>
+            <div class="text-xl">↓</div>
+        </div>
+    </header>
+
+    <!-- Tarot Cards Section -->
+    <section class="py-24 px-4 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-24 fade-in">
+                <h2 class="font-cinzel text-3xl md:text-4xl text-white mb-6 uppercase tracking-[0.2em]">O Destino Manifestado</h2>
+                <p class="text-stone-400 max-w-2xl mx-auto italic font-light text-lg">"As cartas não apenas predizem, elas celebram a soberania da tua existência."</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-12 lg:gap-24">
+                <!-- Carta A Estrela -->
+                <div class="flex flex-col items-center fade-in">
+                    <div class="tarot-frame">
+                        <img src="https://tarotdescomplicado.wordpress.com/wp-content/uploads/2017/07/17-rw-a-estrela.png" 
+                             alt="A Estrela Tarot" class="tarot-img">
+                        <div class="tarot-overlay">
+                            <h3 class="font-cinzel text-xl text-gold-alchemy">XVII • A Estrela</h3>
+                        </div>
+                    </div>
+                    <p class="mt-8 text-stone-400 text-sm max-w-[280px] text-center italic leading-relaxed">
+                        A guia espiritual. Sua luz é serena e eterna, trazendo esperança e renovação por onde quer que sua essência caminhe.
+                    </p>
+                </div>
+
+                <!-- Carta A Imperatriz -->
+                <div class="flex flex-col items-center fade-in" style="transition-delay: 200ms">
+                    <div class="tarot-frame">
+                        <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*D__1Y8QdwYIrmyyjKWhwwA.gif" 
+                             alt="A Imperatriz Tarot" class="tarot-img">
+                        <div class="tarot-overlay">
+                            <h3 class="font-cinzel text-xl text-rose-magic">III • A Imperatriz</h3>
+                        </div>
+                    </div>
+                    <p class="mt-8 text-stone-400 text-sm max-w-[280px] text-center italic leading-relaxed">
+                        O ventre da vida. Representa a abundância da Mãe Terra e o poder da criação. Você é a beleza em sua forma mais plena.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Constellation Section - Redesenhada -->
+    <section class="py-32 px-4 bg-stone-900/40 border-y border-stone-800 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-16">
+            <div class="w-full md:w-1/2 fade-in">
+                <div class="p-10 border border-gold-alchemy/20 rounded-[2.5rem] bg-stone-deep/60 backdrop-blur-md relative">
+                    <div class="absolute -top-5 -left-5 bg-stone-deep border border-gold-alchemy/30 p-3 rounded-full text-gold-alchemy">
+                        ✨
+                    </div>
+                    <h2 class="font-cinzel text-3xl text-white mb-8">Constelação de <span class="lyra-dynamic-name text-gold-alchemy" data-name="Lyra">Lyra</span></h2>
+                    <p class="text-stone-400 leading-relaxed mb-8 font-light">
+                        No coração do cosmos, o teu nome brilha através da estrela <strong class="text-white">Vega</strong>. Diz o mito que a Lira de Orfeu tocava músicas tão belas que até as pedras choravam.
+                    </p>
+                    
+                    <!-- Magnitude info - Ajustada para não parecer erro -->
+                   
+                </div>
+            </div>
+            
+            <div class="w-full md:w-1/2 fade-in text-center md:text-left">
+                <h3 class="font-serif text-3xl text-white mb-6 italic">A Música do Infinito</h3>
+                <p class="text-stone-500 text-lg font-light leading-relaxed">
+                    Ter o nome de uma constelação é carregar um mapa estelar no coração. <span class="lyra-dynamic-name font-bold text-gold-alchemy" data-name="Lyra">Lyra</span> não é apenas um som, é a frequência em que o universo vibra quando você sorri.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mother Earth Section -->
+    <section class="py-32 px-4 relative">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="fade-in mb-16">
+                <span class="text-rose-magic text-5xl block mb-6 drop-shadow-lg">🌿</span>
+                <h2 class="font-cinzel text-4xl md:text-5xl text-white mb-8 tracking-[0.2em]">O Renascer de Gaia</h2>
+                <p class="text-stone-400 font-light text-xl italic">"De 2006 para a eternidade, você é a semente que virou floresta."</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <div class="p-10 border border-stone-800 rounded-3xl bg-stone-deep/50 fade-in border-t-gold-alchemy/30 border-t-2">
+                    <h4 class="font-cinzel text-gold-alchemy mb-4 text-xl tracking-wider">Força Vital</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed">A Mãe Terra te concedeu o poder de nutrir e proteger. Em 18 de janeiro de 2006, o solo sagrado da existência recebeu sua alma para que o mundo pudesse ser mais fértil.</p>
+                </div>
+                <div class="p-10 border border-stone-800 rounded-3xl bg-stone-deep/50 fade-in border-t-rose-magic/30 border-t-2" style="transition-delay: 200ms">
+                    <h4 class="font-cinzel text-rose-magic mb-4 text-xl tracking-wider">A Imperatriz</h4>
+                    <p class="text-stone-500 text-sm leading-relaxed">Como a soberana da sua própria história, <span class="lyra-dynamic-name font-bold text-gold-alchemy" data-name="Lyra">Lyra</span> carrega o brilho das estrelas nas mãos e a força das raízes nos pés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message from Leonardo -->
+    <footer class="py-40 px-4 bg-off-white text-stone-deep relative overflow-hidden">
+        <div class="absolute top-10 left-10 opacity-5 text-[15rem] font-serif select-none italic">L</div>
+        
+        <div class="max-w-2xl mx-auto text-center relative z-10 fade-in">
+            <span class="text-rose-magic text-4xl block mb-10">❤</span>
+            <h2 class="font-serif text-4xl mb-12 italic">Para minha Namorada <span class="lyra-dynamic-name font-bold" data-name="Lyra">Lyra</span></h2>
+            
+            <div class="space-y-8 text-stone-700 font-light text-xl leading-relaxed">
+                <p>Nesta data sagrada, as estrelas no céu e a vida na Terra se unem para celebrar o seu dia.</p>
+                <p>Obrigado por ser minha guia, minha Imperatriz e o centro da minha vida e principalmente por ser a minha <span class="lyra-dynamic-name font-bold" data-name="Lyra">Lyra</span>.</p>
+                <p>Feliz aniversário meu amor.</p>
+            </div>
+            
+            <div class="mt-28 border-t border-stone-200 pt-16">
+                <p class="text-stone-400 text-[10px] uppercase tracking-[0.5em] mb-4">Com todo o meu eterno amor,</p>
+                <p class="font-cursive text-5xl text-gold-alchemy">Leonardo</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Gerador de Estrelas ---
+        function createStars() {
+            const container = document.getElementById('stars-container');
+            const starCount = 180;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 2.5 + 0.5;
+                const top = Math.random() * 100;
+                const left = Math.random() * 100;
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 5;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.top = `${top}%`;
+                star.style.left = `${left}%`;
+                star.style.setProperty('--duration', `${duration}s`);
+                star.style.animationDelay = `${delay}s`;
+                
+                if (i % 10 === 0) star.style.backgroundColor = '#fb7185';
+                if (i % 15 === 0) star.style.backgroundColor = '#d4af37';
+                
+                container.appendChild(star);
+            }
+        }
+
+        // --- Efeito Dinâmico do Nome Lyra ---
+        const magicalFonts = [
+            'Playfair Display', 'Dancing Script', 'Pacifico', 'Caveat', 
+            'Shadows Into Light', 'Bebas Neue', 'Lobster', 'Satisfy', 
+            'Cinzel', 'Great Vibes', 'Amatic SC', 'Comfortaa', 
+            'Henny Penny', 'UnifrakturMaguntia', 'Special Elite', 
+            'Almendra', 'Pinyon Script', 'Righteous'
+        ];
+
+        function animateLyraNames() {
+            const elements = document.querySelectorAll('.lyra-dynamic-name');
+            
+            elements.forEach(el => {
+                const nameText = el.getAttribute('data-name');
+                el.innerHTML = ''; 
+                
+                [...nameText].forEach((char, i) => {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.className = 'lyra-font-span';
+                    el.appendChild(span);
+                    
+                    // Intervalo individual por letra para efeito de "onda" ou aleatório
+                    setInterval(() => {
+                        const randomFont = magicalFonts[Math.floor(Math.random() * magicalFonts.length)];
+                        span.style.fontFamily = `"${randomFont}", sans-serif`;
+                    }, 400 + (i * 150)); 
+                });
+            });
+        }
+
+        // --- Intersection Observer ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // --- Inicialização ---
+        window.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            animateLyraNames();
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
